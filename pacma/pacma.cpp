@@ -133,6 +133,9 @@ void Logic() {
 		break;
 	
 	}
+	if (personaje_y_new < 0) {
+		personaje_y_new = MAP_VERTICAL - 1;
+	}
 	if (personaje_x_new < 0) {
 		personaje_x_new = MAP_HORIZONTAL - 1;
 	}
