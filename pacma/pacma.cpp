@@ -2,9 +2,14 @@
 //
 
 #include <iostream>
+#include "conio.h"
+
+
+
 #define MAP_VERTICAL 29
 #define MAP_HORIZONTAL 120
 #define PERSONAJE 'O'
+
 enum TILES {EMPTY = ' ', WALL = '#', POINT = '.'};
 TILES map[MAP_VERTICAL][MAP_HORIZONTAL];
 bool run = true;
@@ -17,8 +22,9 @@ int personaje_x;
 int personaje_y;
 int puntuacion_actual = 0;
 int puntuacion_total;
-
+// SE COLOQUE EL PERSONAJE EN EL CENTRO DEL MAPA AL COMENZAR
 void Setup() {
+	//PERSONAJE NO AVANCE SI EL ESPACIO NO ESTA VACIO Y SI LO ESTA AVANZA
 	personaje_x = MAP_HORIZONTAL / 2;
 	personaje_y = MAP_VERTICAL / 2;
 	for (size_t i = 0; i < MAP_VERTICAL; i++)
@@ -34,7 +40,7 @@ void Setup() {
 
 		}
 	}
-
+	//PUNTOS DEL MAPA Y ESPACIOS VACIOS DEL MAPA TANTO VERTICAL COMO HORIZONTAL 
 	map[10][10] = TILES::POINT;
 
 	map[12][0] = TILES::EMPTY;
@@ -65,7 +71,7 @@ void Setup() {
 	map[MAP_VERTICAL - 1][63] = TILES::EMPTY;
 	map[MAP_VERTICAL - 1][64] = TILES::EMPTY;
 	map[MAP_VERTICAL - 1][65] = TILES::EMPTY;
-
+	//VERIFICAMOS SI EL JUGADOR PASO POR UN PUNTO O NO 
 	for (size_t i = 0; i < MAP_VERTICAL; i++)
 	{
 		for (size_t j = 0; j < MAP_HORIZONTAL; j++)
@@ -77,10 +83,11 @@ void Setup() {
 		}
 	}
 }
-
+//VALIDACION DE TECLAS PARA EL MOVIMIENTO 
 void Input() {
 	char input;
 	std::cin >> input;
+
 	switch (input)
 	{
 	case 'a':
@@ -107,8 +114,10 @@ void Input() {
 		currentInput = INPUT::UNKNOWN;
 		break;
 	}
-}
+	
 
+}
+// SUMA DE LA POSICION A LA POSICION ACTUAL 
 void Logic() {
 	int personaje_y_new = personaje_y;
 	int personaje_x_new = personaje_x;
@@ -131,8 +140,11 @@ void Logic() {
 		break;
 	case UNKNOWN:
 		break;
-	
+		while (true) {
+			
 	}
+	}
+	//TELETRANSPORTE ENTRE ESPACIOS 
 	if (personaje_y_new < 0) {
 		personaje_y_new = MAP_VERTICAL - 1;
 	}
@@ -140,11 +152,12 @@ void Logic() {
 		personaje_x_new = MAP_HORIZONTAL - 1;
 	}
 	personaje_x_new = personaje_x_new % MAP_HORIZONTAL;
+	personaje_y_new = personaje_y_new % MAP_VERTICAL;
 	if (map[personaje_y_new][personaje_x_new] != TILES::WALL) {
 		personaje_y = personaje_y_new;
 		personaje_x = personaje_x_new;
 	}
-
+	//puntuacion y suma de la puntuacion
 	switch (map[personaje_y_new][personaje_x_new])
 	{
 	case TILES::WALL:
@@ -157,11 +170,16 @@ void Logic() {
 		personaje_y = personaje_y_new;
 		personaje_x = personaje_x_new;
 		break;
-
+		
 	}
+
+	
+
+	
 
 }
 void Draw() {
+	//DIBUJO DEL MAPA Y DEL PERSONAJE
 	system("CLS");
 	for (size_t i = 0; i < MAP_VERTICAL; i++)
 	{
@@ -177,13 +195,17 @@ void Draw() {
 		}
 		std::cout << std::endl;
 	}
+	// DIBUJO DE LA PUNTUACION ACTUAL
 	std::cout << puntuacion_actual << '/' << puntuacion_total;
+
+	
 }
 
 
 
 int main()
 {
+	//EJECUCION DE LAS FUNCIONES
 	Setup();
 	Draw();
 	while (run) {
