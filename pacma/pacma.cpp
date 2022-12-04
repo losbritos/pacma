@@ -85,10 +85,47 @@ void Setup() {
 }
 //VALIDACION DE TECLAS PARA EL MOVIMIENTO 
 void Input() {
-	char input;
-	std::cin >> input;
+	//char input;
+	//std::cin >> input;
+	if (_kbhit) {
+		char tecla = _getch();
+		if (tecla == 'w' ) {
+			currentInput = INPUT::UP;
+		}
+		else if (tecla == 'W') {
+			currentInput = INPUT::UP;
+		}
+		else if (tecla == 's') {
+			currentInput = INPUT::DOWN;
+		}
+		else if (tecla == 'S') {
+			currentInput = INPUT::DOWN;
+		}
+		else if (tecla == 'a') {
+			currentInput = INPUT::LEFT;
+		}
+		else if (tecla == 'A') {
+			currentInput = INPUT::LEFT;
+		}
+		else if (tecla == 'd') {
+			currentInput = INPUT::RIGHT;
+		}
+		else if (tecla == 'D') {
+			currentInput = INPUT::RIGHT;
+		}
+		else if (tecla == 'q') {
+			currentInput = INPUT::QUIT;
+		}
+		else if (tecla == 'Q') {
+			currentInput = INPUT::QUIT;
+		}
+		else {
+			currentInput = INPUT::UNKNOWN;
+		}
+			
+	}
 
-	switch (input)
+	/*switch (input)
 	{
 	case 'a':
 	case 'A':
@@ -113,7 +150,7 @@ void Input() {
 	default:
 		currentInput = INPUT::UNKNOWN;
 		break;
-	}
+	}*/
 	
 
 }
