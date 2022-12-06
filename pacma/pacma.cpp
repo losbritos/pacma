@@ -237,7 +237,7 @@ void Draw() {
 	if (puntuacion_actual == puntuacion_total) {
 
 		printf("\n\t\tGanaste La Partida");
-		
+		exit(1);
 		
 
 	}
