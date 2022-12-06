@@ -6,9 +6,12 @@
 #include <stdlib.h>
 
 
+
 #define MAP_VERTICAL 29
 #define MAP_HORIZONTAL 120
 #define PERSONAJE 'O'
+
+
 
 enum TILES {EMPTY = ' ', WALL = '#', POINT = '.'};
 TILES map[MAP_VERTICAL][MAP_HORIZONTAL];
@@ -18,6 +21,7 @@ bool run = true;
 enum INPUT { QUIT , UP ,DOWN, LEFT, RIGHT, UNKNOWN};
 INPUT currentInput = INPUT::UNKNOWN;
 
+int win;
 int personaje_x;
 int personaje_y;
 int puntuacion_actual = 0;
@@ -227,10 +231,19 @@ void Draw() {
 		std::cout << std::endl;
 	}
 	// DIBUJO DE LA PUNTUACION ACTUAL
-	std::cout << puntuacion_actual << '/' << puntuacion_total;
+	
 
+	std::cout << puntuacion_actual << '/' << puntuacion_total;
+	if (puntuacion_actual == puntuacion_total) {
+
+		printf("\n\t\tGanaste La Partida");
+		
+		
+
+	}
 	
 }
+
 
 
 
