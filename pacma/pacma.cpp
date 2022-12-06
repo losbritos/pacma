@@ -51,7 +51,7 @@ void Setup() {
 	map[1][61] = TILES::POINT;
 	map[1][62] = TILES::POINT;
 	map[1][63] = TILES::POINT;
-	
+	map[1][64] = TILES::POINT;
 
 	map[10][1] = TILES::POINT;
 	map[11][1] = TILES::POINT;
