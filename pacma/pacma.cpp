@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "conio.h"
-
+#include <stdlib.h>
 
 
 #define MAP_VERTICAL 29
@@ -25,6 +25,8 @@ int puntuacion_total;
 // SE COLOQUE EL PERSONAJE EN EL CENTRO DEL MAPA AL COMENZAR
 void Setup() {
 	//PERSONAJE NO AVANCE SI EL ESPACIO NO ESTA VACIO Y SI LO ESTA AVANZA
+
+	
 	personaje_x = MAP_HORIZONTAL / 2;
 	personaje_y = MAP_VERTICAL / 2;
 	for (size_t i = 0; i < MAP_VERTICAL; i++)
@@ -41,7 +43,24 @@ void Setup() {
 		}
 	}
 	//PUNTOS DEL MAPA Y ESPACIOS VACIOS DEL MAPA TANTO VERTICAL COMO HORIZONTAL 
-	map[10][10] = TILES::POINT;
+	map[27][61] = TILES::POINT;
+	map[27][62] = TILES::POINT;
+	map[27][63] = TILES::POINT;
+	map[27][64] = TILES::POINT;
+
+	map[1][61] = TILES::POINT;
+	map[1][62] = TILES::POINT;
+	map[1][63] = TILES::POINT;
+
+	map[10][1] = TILES::POINT;
+	map[11][1] = TILES::POINT;
+	map[12][1] = TILES::POINT;
+	map[13][1] = TILES::POINT;
+
+	map[10][118] = TILES::POINT;
+	map[11][118] = TILES::POINT;
+	map[12][118] = TILES::POINT;
+	map[13][118] = TILES::POINT;
 
 	map[12][0] = TILES::EMPTY;
 	map[10][0] = TILES::EMPTY;
@@ -85,8 +104,7 @@ void Setup() {
 }
 //VALIDACION DE TECLAS PARA EL MOVIMIENTO 
 void Input() {
-	//char input;
-	//std::cin >> input;
+	
 	if (_kbhit) {
 		char tecla = _getch();
 		if (tecla == 'w' ) {
@@ -125,32 +143,6 @@ void Input() {
 			
 	}
 
-	/*switch (input)
-	{
-	case 'a':
-	case 'A':
-		currentInput = INPUT::LEFT;
-		break;
-	case 'd':
-	case 'D':
-		currentInput = INPUT::RIGHT;
-		break;
-	case 'w':
-	case 'W':
-		currentInput = INPUT::UP;
-		break;
-	case 's':
-	case 'S':
-		currentInput = INPUT::DOWN;
-		break;
-	case 'q':
-	case 'Q':
-		currentInput = INPUT::QUIT;
-		break;
-	default:
-		currentInput = INPUT::UNKNOWN;
-		break;
-	}*/
 	
 
 }
@@ -217,7 +209,9 @@ void Logic() {
 }
 void Draw() {
 	//DIBUJO DEL MAPA Y DEL PERSONAJE
+	system("color 0A");
 	system("CLS");
+
 	for (size_t i = 0; i < MAP_VERTICAL; i++)
 	{
 		for (size_t j = 0; j < MAP_HORIZONTAL; j++)
